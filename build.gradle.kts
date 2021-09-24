@@ -2,6 +2,7 @@ val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 
+val kotlin_css_version: String = "1.0.0-pre.248-kotlin-1.5.31"
 val exposedVersion: String = "0.34.1"
 
 
@@ -34,6 +35,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization:$ktor_version")
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.3")
     implementation("io.ktor:ktor-html-builder:$ktor_version")
+    implementation("org.jetbrains.kotlin-wrappers:kotlin-css:$kotlin_css_version")
     implementation("io.ktor:ktor-server-host-common:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")

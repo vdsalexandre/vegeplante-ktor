@@ -10,6 +10,7 @@ import kotlinx.html.body
 import kotlinx.html.h1
 import kotlinx.html.head
 import kotlinx.html.li
+import kotlinx.html.link
 import kotlinx.html.title
 import kotlinx.html.ul
 import org.jetbrains.exposed.sql.selectAll
@@ -22,6 +23,7 @@ fun Route.plantesConfig() {
             call.respondHtml {
                 head {
                     title { +"Vegeplante" }
+                    link(href = "/style.css", rel = "stylesheet", type = "text/css")
                 }
                 body {
                     h1 { +"Liste des plantes :" }

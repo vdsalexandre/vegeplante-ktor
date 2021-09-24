@@ -2,6 +2,7 @@ package com.vegeplante
 
 import com.vegeplante.config.init
 import com.vegeplante.routes.plantesConfig
+import com.vegeplante.routes.staticConfig
 import io.ktor.application.Application
 import io.ktor.routing.routing
 
@@ -12,6 +13,7 @@ fun Application.module() {
     init(environment)
 
     routing {
+        staticConfig()
         plantesConfig()
     }
 }
