@@ -1,9 +1,11 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
-
 val kotlin_css_version: String = "1.0.0-pre.248-kotlin-1.5.31"
-val exposedVersion: String = "0.34.1"
+
+val exposed_version: String = "0.34.1"
+val junit_version: String = "5.8.1"
+val assertj_version: String = "0.2.1"
 
 
 plugins {
@@ -42,10 +44,13 @@ dependencies {
     implementation("com.zaxxer:HikariCP:5.0.0")
     implementation("org.postgresql:postgresql:42.2.23")
 
-    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+    implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
 
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junit_version")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junit_version")
+    testImplementation("net.wuerl.kotlin:assertj-core-kotlin:$assertj_version")
 }

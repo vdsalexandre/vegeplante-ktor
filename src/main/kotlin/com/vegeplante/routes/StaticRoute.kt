@@ -9,13 +9,20 @@ import io.ktor.routing.get
 import io.ktor.routing.route
 import kotlinx.css.Color
 import kotlinx.css.CssBuilder
+import kotlinx.css.body
 import kotlinx.css.color
 import kotlinx.css.li
+import kotlinx.css.margin
+import kotlinx.css.padding
 
 fun Route.staticConfig() {
     route("") {
         get("/style.css") {
             call.respondCss {
+                body {
+                    padding = "0"
+                    margin = "0"
+                }
                 li {
                     color = Color.red
                 }
