@@ -11,11 +11,8 @@ import io.ktor.html.respondHtml
 import io.ktor.routing.Route
 import io.ktor.routing.get
 import io.ktor.routing.route
-import kotlinx.html.BODY
 import kotlinx.html.body
-import kotlinx.html.h1
 import org.jetbrains.exposed.sql.LowerCase
-import org.jetbrains.exposed.sql.Query
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 

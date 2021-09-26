@@ -17,6 +17,6 @@ fun BODY.searchMenu() {
         input(type = InputType.text, name = "nameStartsWith") {
             attributes["id"] = "searchPlants"
         }
-        input(type = InputType.submit) { attributes["value"] = "Recherche" }
+        input(type = InputType.submit) { attributes["value"] = "Rechercher" }
     }
 }
