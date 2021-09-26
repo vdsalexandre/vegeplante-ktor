@@ -1,51 +1,50 @@
 package com.vegeplante.routes
 
 import com.vegeplante.models.Plante
+import com.vegeplante.templates.bodyTitle
 import com.vegeplante.templates.header
+import com.vegeplante.templates.listPlants
+import com.vegeplante.templates.searchMenu
+import com.vegeplante.utils.ConfigData.PLANTS_URL
 import io.ktor.application.call
 import io.ktor.html.respondHtml
 import io.ktor.routing.Route
 import io.ktor.routing.get
 import io.ktor.routing.route
+import kotlinx.html.BODY
 import kotlinx.html.body
 import kotlinx.html.h1
-import kotlinx.html.table
-import kotlinx.html.tbody
-import kotlinx.html.td
-import kotlinx.html.th
-import kotlinx.html.thead
-import kotlinx.html.tr
+import org.jetbrains.exposed.sql.LowerCase
+import org.jetbrains.exposed.sql.Query
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
-import org.jetbrains.exposed.sql.transactions.transaction
 
 fun Route.plantesConfig() {
-    route("/plantes") {
+    route(PLANTS_URL) {
 
         get("/all") {
             call.respondHtml {
-                header(title = "Vegeplante", css = "/style.css")
+                header(title = "Vegeplante - all", css = "/style.css")
                 body {
-                    h1 { +"Liste des plantes :" }
-                    table {
-                        thead {
-                            tr {
-                                th { +"Id plante" }
-                                th { +"Nom Plante" }
-                                th { +"Tollere sallinite" }
-                            }
-                        }
-                        tbody {
-                            transaction {
-                                for (plante in Plante.selectAll()) {
-                                    tr {
-                                        td { +plante[Plante.id].toString() }
-                                        td { +plante[Plante.nomPlante] }
-                                        td { +Plante.getTolereSallinite() }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    bodyTitle()
+                    searchMenu()
+                    listPlants(query = Plante.selectAll())
+                }
+            }
+        }
+
+        get("/contains") {
+            call.respondHtml {
+                val valueToSearch = call.request.queryParameters["nameStartsWith"]?.lowercase()
+                val query = if (valueToSearch.isNullOrEmpty()) {
+                    Plante.selectAll()
+                } else Plante.select { LowerCase(Plante.nomPlante) like "$valueToSearch%" }
+
+                header(title = "Vegeplante - search", css = "/style.css")
+                body {
+                    bodyTitle()
+                    searchMenu()
+                    listPlants(query = query)
                 }
             }
         }

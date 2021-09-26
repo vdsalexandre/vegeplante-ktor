@@ -11,9 +11,9 @@ import kotlinx.css.Color
 import kotlinx.css.CssBuilder
 import kotlinx.css.body
 import kotlinx.css.color
-import kotlinx.css.li
 import kotlinx.css.margin
 import kotlinx.css.padding
+import kotlinx.css.td
 
 fun Route.staticConfig() {
     route("") {
@@ -23,7 +23,7 @@ fun Route.staticConfig() {
                     padding = "0"
                     margin = "0"
                 }
-                li {
+                td {
                     color = Color.red
                 }
             }
