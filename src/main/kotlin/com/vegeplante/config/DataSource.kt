@@ -2,18 +2,18 @@ package com.vegeplante.config
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import io.ktor.application.ApplicationEnvironment
+import io.ktor.application.Application
 import org.jetbrains.exposed.sql.Database
 
-fun init(environment: ApplicationEnvironment) {
+fun Application.init() {
     Database.connect(
         HikariDataSource(
             HikariConfig().apply {
-                schema = environment.config.property("ktor.datasource.schema").getString()
-                jdbcUrl = environment.config.property("ktor.datasource.url").getString()
-                driverClassName = environment.config.property("ktor.datasource.driverClassName").getString()
-                username = environment.config.property("ktor.datasource.username").getString()
-                password = environment.config.property("ktor.datasource.password").getString()
+                schema = findProperty("ktor.datasource.schema")
+                jdbcUrl = findProperty("ktor.datasource.url")
+                driverClassName = findProperty("ktor.datasource.driverClassName")
+                username = findProperty("ktor.datasource.username")
+                password = findProperty("ktor.datasource.password")
             }
         )
     )
