@@ -23,7 +23,7 @@ fun Route.plantesConfig() {
 
         get(ALL_PLANTS_URL) {
             call.respondHtml {
-                head(title = "Vegeplante - all", css = "/style.css")
+                head(title = "Vegeplante - all", css = "/css/style.css")
                 body {
                     bodyTitle()
                     searchMenu()
@@ -39,7 +39,7 @@ fun Route.plantesConfig() {
                     Plante.selectAll()
                 } else Plante.select { LowerCase(Plante.nomPlante) like "$valueToSearch%" }
 
-                head(title = "Vegeplante - search", css = "/style.css")
+                head(title = "Vegeplante - search", css = "/css/style.css")
                 body {
                     bodyTitle()
                     searchMenu()

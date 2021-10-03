@@ -16,7 +16,7 @@ import kotlinx.css.padding
 import kotlinx.css.td
 
 fun Route.staticConfig() {
-    route("") {
+    route("/css") {
         get("/style.css") {
             call.respondCss {
                 body {
